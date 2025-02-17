@@ -1,7 +1,7 @@
 package com.api.services;
 
 import com.api.filters.LoggingFilter;
-import com.api.utils.JsonUtils;
+import utils.JsonUtils;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
