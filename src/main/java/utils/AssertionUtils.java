@@ -13,14 +13,14 @@ import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
 import listener.TestListener;
 import reports.ExtentManager;
-
+import utils.AssertionKeys;
 public class AssertionUtils {
 	
 	public static void assertNverify(Map<String,Object>actual,Map<String,Object>expected) {
 		List<AssertionKeys> actualValueList=new ArrayList<>();
 		AssertionKeys assertKeys=new AssertionKeys("JSON_PATH","EXPECTED_VALUE","ACTUAL_VALUE","RESULT");
 		actualValueList.add(assertKeys);
-		boolean isMatched=false;
+		boolean isMatched=true;
 		
 		Set<String>allKeys =expected.keySet();
 		for(String eachKey:allKeys) {
@@ -29,25 +29,35 @@ public class AssertionUtils {
 				Object actualValue=actual.get(eachKey);
 				if(actualValue.equals(expected.get(eachKey))) {
 					actualValueList.add(new AssertionKeys(eachKey,expected.get(eachKey),actualValue,"Matched"));
-					isMatched=true;
+					//isMatched=true;
 				}
 				else {
 					actualValueList.add(new AssertionKeys(eachKey,expected.get(eachKey),actualValue,"Not Matched"));
+					isMatched=false;
+					break;
 				}
 			}
 		}
 		
 		if(isMatched) {
+			
+			
 			ExtentManager.logPassDetails("all assertions matched");
+			String[][]finalAssertionsMap=actualValueList.stream()
+					.map(each -> new String[]{each.getJsonPath(),String.valueOf(each.getExpectedValue())
+							,String.valueOf(each.getActualValue()),each.getResult()}).toArray(String[][]::new);
+			
+			TestListener.extentTest.get().info(MarkupHelper.createTable(finalAssertionsMap,"table-sm"));
 
 		}
 		else {
+			ExtentManager.logFailureDetails("assertions did not match");
 			
 			String[][]finalAssertionsMap=actualValueList.stream()
 					.map(each -> new String[]{each.getJsonPath(),String.valueOf(each.getExpectedValue())
 							,String.valueOf(each.getActualValue()),each.getResult()}).toArray(String[][]::new);
 			
-			TestListener.extentTest.get().fail(MarkupHelper.createTable(finalAssertionsMap, "table-sm"));
+			TestListener.extentTest.get().info(MarkupHelper.createTable(finalAssertionsMap, "table-sm"));
 			
 		}
 		
