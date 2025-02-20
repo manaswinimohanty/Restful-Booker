@@ -33,8 +33,8 @@ public class CreateBookingAPI {
 		
 		Faker faker=new Faker();
 		Map<String,Object>map=new HashMap<String,Object>();
-		map.put("checkin", LocalDate.of(2024, 1, 1).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-		map.put("checkout", LocalDate.of(2025, 1, 1).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		map.put("checkin", LocalDate.of(2024, 1, 1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+		map.put("checkout", LocalDate.of(2025, 1, 1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		
 		CreateBookingRequestPojo createBookingRequestPojo=CreateBookingRequestPojo.builder().firstname(faker.name().firstName()).lastname(faker.name().lastName())
 		.bookingdates(map)
