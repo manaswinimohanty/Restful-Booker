@@ -63,7 +63,7 @@ public class BaseService {
 		 * .contentType(ContentType.JSON).when().get(endpoint+"/{id}");
 		 */
 		
-		return reqspec.contentType(ContentType.JSON).when().get(endpoint);
+		return reqspec.when().get(endpoint);
 		
 	}
 	

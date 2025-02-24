@@ -25,20 +25,25 @@ public class LoggingFilter implements Filter {
 		return response;
 	}
 
-	public void logRequest(FilterableRequestSpecification requestSpec) {
+	public void logRequest(FilterableRequestSpecification reqSpec) {
 
 		
-		  ExtentManager.logInfoDetails("Request Uri: " + requestSpec.getURI());
+		  ExtentManager.logInfoDetails("Request Uri: " + reqSpec.getURI());
 		  ExtentManager.logInfoDetails("Headers are : ");
-		  ExtentManager.logHeaders(requestSpec.getHeaders());
+		  ExtentManager.logHeaders(reqSpec.getHeaders());
 		  ExtentManager.logInfoDetails("Request Body: ");
-		  ExtentManager.logJsonBody(requestSpec.getBody());
+		  if(reqSpec.getBody()==null) {
+			  ExtentManager.logInfoDetails("No Request body present");
+		  }
+		  else {
+			  ExtentManager.logJsonBody(reqSpec.getBody());
+		  }
 		 
 
 		
-		  logFilter.info("Request Uri: "+requestSpec.getURI());
-		  logFilter.info("headers: "+requestSpec.getHeaders());
-		  logFilter.info("Body: "+requestSpec.getBody());
+		  logFilter.info("Request Uri: "+reqSpec.getURI());
+		  logFilter.info("headers: "+reqSpec.getHeaders());
+		  logFilter.info("Body: "+reqSpec.getBody());
 		 
 
 	}
@@ -50,7 +55,12 @@ public class LoggingFilter implements Filter {
 		  ExtentManager.logInfoDetails("response headers: ");
 		  ExtentManager.logHeaders(response.getHeaders());
 		  ExtentManager.logInfoDetails("response body: ");
-		  ExtentManager.logJsonBody(response.getBody().prettyPrint());
+		  if(response.getBody()==null) {
+			  ExtentManager.logInfoDetails("No Request body present");
+		  }
+		  else {
+			  ExtentManager.logJsonBody(response.getBody().prettyPrint());
+		  }
 		 
 
 		

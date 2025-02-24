@@ -1,5 +1,6 @@
 package com.api.test;
 
+import org.testng.annotations.Test;
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
 import org.testng.annotations.Test;

@@ -16,7 +16,7 @@ import reports.ExtentManager;
 import utils.AssertionKeys;
 public class AssertionUtils {
 	
-	public static void assertNverify(Map<String,Object>actual,Map<String,Object>expected) {
+	public static boolean assertNverify(Map<String,Object>actual,Map<String,Object>expected) {
 		List<AssertionKeys> actualValueList=new ArrayList<>();
 		AssertionKeys assertKeys=new AssertionKeys("JSON_PATH","EXPECTED_VALUE","ACTUAL_VALUE","RESULT");
 		actualValueList.add(assertKeys);
@@ -42,23 +42,23 @@ public class AssertionUtils {
 		if(isMatched) {
 			
 			
-			ExtentManager.logPassDetails("all assertions matched");
+			
 			String[][]finalAssertionsMap=actualValueList.stream()
 					.map(each -> new String[]{each.getJsonPath(),String.valueOf(each.getExpectedValue())
 							,String.valueOf(each.getActualValue()),each.getResult()}).toArray(String[][]::new);
 			
 			TestListener.extentTest.get().info(MarkupHelper.createTable(finalAssertionsMap,"table-sm"));
-
+			return isMatched;
 		}
 		else {
-			ExtentManager.logFailureDetails("assertions did not match");
+		//	ExtentManager.logFailureDetails("assertions did not match");
 			
 			String[][]finalAssertionsMap=actualValueList.stream()
 					.map(each -> new String[]{each.getJsonPath(),String.valueOf(each.getExpectedValue())
 							,String.valueOf(each.getActualValue()),each.getResult()}).toArray(String[][]::new);
 			
 			TestListener.extentTest.get().info(MarkupHelper.createTable(finalAssertionsMap, "table-sm"));
-			
+			return isMatched;
 		}
 		
 		
