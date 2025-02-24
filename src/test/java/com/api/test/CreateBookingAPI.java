@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import com.api.models.Request.CreateBookingRequestPojo;
 import com.api.models.Response.CreateBookingResponsePojo;
@@ -23,55 +24,52 @@ import net.datafaker.Faker;
 import utils.AssertionUtils;
 
 public class CreateBookingAPI {
-	
+
 	public static int bookingid;
 	private static ObjectMapper mapper;
+
 	@Test
-	public static void createBookingTest(ITestContext context ) {
-		
-		mapper=new ObjectMapper();
-		BookingService bookingService=new BookingService();
-		
-		Faker faker=new Faker();
-		Map<String,Object>map=new HashMap<String,Object>();
+	public static void createBookingTest(ITestContext context) {
+
+		mapper = new ObjectMapper();
+		BookingService bookingService = new BookingService();
+
+		Faker faker = new Faker();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("checkin", LocalDate.of(2024, 1, 1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		map.put("checkout", LocalDate.of(2025, 1, 1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-		
-		CreateBookingRequestPojo createBookingRequestPojo=CreateBookingRequestPojo.builder().firstname(faker.name().firstName()).lastname(faker.name().lastName())
-		.bookingdates(map)
-		.depositpaid(true).additionalneeds("breakfast").build();
-		
-		
-		Response response=bookingService.createBooking(createBookingRequestPojo);
+
+		CreateBookingRequestPojo createBookingRequestPojo = CreateBookingRequestPojo.builder()
+				.firstname(faker.name().firstName()).lastname(faker.name().lastName()).bookingdates(map)
+				.depositpaid(Stream.of(true,false).findAny().get())
+				.additionalneeds("breakfast").totalprice(faker.number().numberBetween(100, 1000)).build();
+
+		Response response = bookingService.createBooking(createBookingRequestPojo);
 		if (response.statusCode() == 200) {
 
-			bookingid=response.then().statusCode(200).extract().path("bookingid");
-			context.setAttribute("bookingid",bookingid );
+			bookingid = response.then().statusCode(200).extract().path("bookingid");
+			context.setAttribute("bookingid", bookingid);
 			try {
-				Map<String,Object>receiveValue=response.jsonPath().getObject("booking",new TypeRef<Map<String,Object>>(){});
-			Map<String,Object>sentValue=mapper.convertValue(createBookingRequestPojo, new TypeReference<Map<String,Object>>(){});
-		//	AssertionUtils.assertNverify(response, expectedValueMap);
+				Map<String, Object> receiveValue = response.jsonPath().getObject("booking",
+						new TypeRef<Map<String, Object>>() {
+						});
+				Map<String, Object> sentValue = mapper.convertValue(createBookingRequestPojo,
+						new TypeReference<Map<String, Object>>() {
+						});
+				// AssertionUtils.assertNverify(response, expectedValueMap);
 				AssertionUtils.assertNverify(receiveValue, sentValue);
-				
-			} 
-			catch (Exception e) {
+
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
-		
-		
+			}
+
 		}
-		
-		else
-		{
-			
+
+		else {
+
 		}
-	
-		
-		
-		
-		
-		
+
 	}
 
 }
