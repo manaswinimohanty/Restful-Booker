@@ -20,7 +20,7 @@ import net.datafaker.Faker;
 
 public class UpdateBookingAPI {
 	
-	BookingService bookingService=new BookingService();
+	BookingService bookingService;
 	Response r;
 	private static int bookingid;
 	private static String token;
@@ -60,9 +60,8 @@ public class UpdateBookingAPI {
 		bookingid=(int) context.getAttribute("bookingid");
 		
 		Faker faker=new Faker(); Map<String,Object>map=new HashMap<String,Object>();
-		  map.put("checkin", LocalDate.of(2024, 1,
-		  1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))); map.put("checkout",
-		  LocalDate.of(2025, 1, 1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+		  map.put("checkin", LocalDate.of(2024,1,1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+		  map.put("checkout",LocalDate.of(2025, 1, 1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		  
 		  CreateBookingRequestPojo
 		  createBookingRequestPojo=CreateBookingRequestPojo.builder()
@@ -73,6 +72,7 @@ public class UpdateBookingAPI {
 		  .depositpaid(Stream.of(true,false).findAny().get())
 		  .additionalneeds("breakfast").build();
 	
+		  bookingService=new BookingService();
 		Response updateBookingResponse=bookingService.updateBooking(String.valueOf(bookingid), token,createBookingRequestPojo);
 		
 		
