@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
@@ -60,13 +61,17 @@ public class UpdateBookingAPI {
 		
 		Faker faker=new Faker(); Map<String,Object>map=new HashMap<String,Object>();
 		  map.put("checkin", LocalDate.of(2024, 1,
-		  1).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))); map.put("checkout",
-		  LocalDate.of(2025, 1, 1).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		  1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))); map.put("checkout",
+		  LocalDate.of(2025, 1, 1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		  
 		  CreateBookingRequestPojo
-		  createBookingRequestPojo=CreateBookingRequestPojo.builder().firstname(faker.
-		  name().firstName()).lastname(faker.name().lastName()) .bookingdates(map)
-		  .depositpaid(true).additionalneeds("breakfast").build();
+		  createBookingRequestPojo=CreateBookingRequestPojo.builder()
+		  .firstname(faker.name().firstName())
+		  .lastname(faker.name().lastName())
+		  .totalprice(faker.number().numberBetween(100, 500))
+		  .bookingdates(map)
+		  .depositpaid(Stream.of(true,false).findAny().get())
+		  .additionalneeds("breakfast").build();
 	
 		Response updateBookingResponse=bookingService.updateBooking(String.valueOf(bookingid), token,createBookingRequestPojo);
 		
