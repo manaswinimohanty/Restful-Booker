@@ -1,5 +1,5 @@
 {
-  "theme": "STANDARD",
+  "theme": "STANDARD1",
   "encoding": "utf-8",
   "protocol": "HTTPS",
   "timelineEnabled": false,
@@ -10,4 +10,7 @@
   "timeStampFormat": "MMM-dd-yyyy HH:mm:ss a",
   "js": "",
   "css": ".badge-primary{background-color: #24d5d8;}"
+  
+  
+  
 }
