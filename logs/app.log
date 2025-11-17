@@ -1,0 +1,64 @@
+19:22:49.715 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\Admin\AppData\Local\JetBrains\IdeaIC2024.3\temp-testng-customsuite.xml
+
+19:22:52.439 [main] INFO  filters.LoggingFilters - Request Uri: https://restful-booker.herokuapp.com/booking
+19:22:52.439 [main] INFO  filters.LoggingFilters - headers: Accept=*/*
+Content-Type=application/json
+19:22:52.439 [main] INFO  filters.LoggingFilters - Body: {"firstname":"Kristi","lastname":"Rippin","totalprice":38594,"depositpaid":false,"bookingdates":{"checkin":"2024-01-01","checkout":"2023-01-01"},"additionalneeds":"Breakfast"}
+19:22:55.104 [main] INFO  filters.LoggingFilters - response status: 200
+19:22:55.104 [main] INFO  filters.LoggingFilters - response headers: Content-Length=204
+Content-Type=application/json; charset=utf-8
+Date=Wed, 17 Sep 2025 13:52:55 GMT
+Etag=W/"cc-+ZQ6Jc341b237ktUteLhjxCwupg"
+Nel={"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}
+Report-To={"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=NeMx4CPMT7jG5nDkMKi7322TCFFLzotT7XheZdy6Aq4%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1758117175"}],"max_age":3600}
+Reporting-Endpoints=heroku-nel="https://nel.heroku.com/reports?s=NeMx4CPMT7jG5nDkMKi7322TCFFLzotT7XheZdy6Aq4%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1758117175"
+Server=Heroku
+Via=1.1 heroku-router
+X-Powered-By=Express
+19:22:55.104 [main] INFO  filters.LoggingFilters - response body: {
+    "bookingid": 1827,
+    "booking": {
+        "firstname": "Kristi",
+        "lastname": "Rippin",
+        "totalprice": 38594,
+        "depositpaid": false,
+        "bookingdates": {
+            "checkin": "2024-01-01",
+            "checkout": "2023-01-01"
+        },
+        "additionalneeds": "Breakfast"
+    }
+}
+19:22:56.046 [main] INFO  filters.LoggingFilters - Request Uri: https://restful-booker.herokuapp.com/booking/1827
+19:22:56.048 [main] INFO  filters.LoggingFilters - headers: Accept=*/*
+19:22:56.048 [main] INFO  filters.LoggingFilters - Body: null
+19:22:57.569 [main] INFO  filters.LoggingFilters - response status: 200
+19:22:57.569 [main] INFO  filters.LoggingFilters - response headers: Content-Length=175
+Content-Type=application/json; charset=utf-8
+Date=Wed, 17 Sep 2025 13:52:58 GMT
+Etag=W/"af-feKt+e/LKH1vnZDrP0bTN4KS2Q8"
+Nel={"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}
+Report-To={"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=cPxF0gczLxSEA6DKSp%2B5zTX0DVIxfz3lpnvs7spzgYU%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1758117178"}],"max_age":3600}
+Reporting-Endpoints=heroku-nel="https://nel.heroku.com/reports?s=cPxF0gczLxSEA6DKSp%2B5zTX0DVIxfz3lpnvs7spzgYU%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1758117178"
+Server=Heroku
+Via=1.1 heroku-router
+X-Powered-By=Express
+19:22:57.572 [main] INFO  filters.LoggingFilters - response body: {
+    "firstname": "Kristi",
+    "lastname": "Rippin",
+    "totalprice": 38594,
+    "depositpaid": false,
+    "bookingdates": {
+        "checkin": "2024-01-01",
+        "checkout": "2023-01-01"
+    },
+    "additionalneeds": "Breakfast"
+}
+23:28:38.887 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\Admin\AppData\Local\JetBrains\IdeaIC2024.3\temp-testng-customsuite.xml
+
+23:28:41.411 [main] INFO  filters.LoggingFilters - Request Uri: https://restful-booker.herokuapp.com/booking
+23:28:41.412 [main] INFO  filters.LoggingFilters - headers: Accept=*/*
+Content-Type=application/json
+23:28:41.412 [main] INFO  filters.LoggingFilters - Body: {"firstname":"Cedrick","lastname":"Walter","totalprice":18382,"depositpaid":false,"bookingdates":{"checkin":"2024-01-01","checkout":"2023-01-01"},"additionalneeds":"Breakfast"}
