@@ -1,13 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <listeners>
-        <listener class-name="listener.TestListener" />
-    </listeners>
-    <test verbose="2" preserve-order="true" name="Booking">
+    <test verbose="2" preserve-order="true" name="D:/APIProject/RestfulBooker">
         <classes>
-            <class name="APITest.BookingAPITest.CreateBookingAPI" />
-            <class name="APITest.BookingAPITest.GetBookingIdsAPI" />
+            <class name="APITest.BookingAPITest.CreateBookingAPITest">
+                <methods>
+                    <include name="createBookingAPITest"/>
+                </methods>
+            </class>
+            <class name="APITest.BookingAPITest.GetBookingAPITest">
+                <methods>
+                    <include name="getBookingAPITest"/>
+                </methods>
+            </class>
+            <class name="APITest.BookingAPITest.GetBookingIdsAPITest">
+                <methods>
+                    <include name="getAllIds"/>
+                    <include name="getBookingIdsFilterByName"/>
+                    <include name="getBookingIdsFilterByDate"/>
+                </methods>
+            </class>
+            <class name="APITest.TokenAPITest.CreateTokenAPITest">
+                <methods>
+                    <include name="createTokenAPITest"/>
+                </methods>
+            </class>
+            <class name="APITest.TokenAPITest.CreateTokenAPITestUsingDDT">
+                <methods>
+                    <include name="createTokenAPITestUsingDDT"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

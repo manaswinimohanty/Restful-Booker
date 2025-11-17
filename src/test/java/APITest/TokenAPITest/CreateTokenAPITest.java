@@ -8,7 +8,7 @@ import services.authService.AuthService;
 import static org.hamcrest.Matchers.*;
 
 //@Listeners(TestListener.class)
-public class CreateTokenAPI {
+public class CreateTokenAPITest {
     private AuthService authService=new AuthService();
     private Response response;
 
