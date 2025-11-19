@@ -10,7 +10,7 @@ import io.restassured.specification.RequestSpecification;
 public class BaseService {
     private RequestSpecification reqSpec;
     private static String baseUri;
-    private static final String envFilePath = "D:\\APIProject\\RestfulBooker\\src\\test\\resources\\env\\";
+    private static final String envFilePath = System.getProperty("user.dir")+"/src/test/resources/env/";
 
     static {
         System.out.println("inside BaseService static block");
