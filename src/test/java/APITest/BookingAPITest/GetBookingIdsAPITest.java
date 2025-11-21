@@ -15,7 +15,7 @@ import services.bookingService.BookingService;
 
 import java.util.List;
 
-@Listeners(TestListener.class)
+
 public class GetBookingIdsAPITest {
     private BookingService bookingService=new BookingService();
     Response response;

@@ -38,8 +38,11 @@ public Response getRequest(String basePath){
         return reqSpec.when().get(basePath);
 }
 
+
+
 public Response putRequest(Object payload,String basePath){
-        return reqSpec.contentType(ContentType.JSON).accept(ContentType.JSON).header("Cookie","").body(payload).put(basePath);
+        return reqSpec.contentType(ContentType.JSON)
+                .header("Authorization","Basic YWRtaW46cGFzc3dvcmQxMjM=").body(payload).when().put(basePath);
 }
 
 }
