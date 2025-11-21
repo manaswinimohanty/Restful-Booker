@@ -19,7 +19,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
-@Listeners(TestListener.class)
+
 public class GetBookingAPITest {
     //private BookingService bookingService;
     private Response response;

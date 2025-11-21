@@ -16,7 +16,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 
-@Listeners(TestListener.class)
+
 public class CreateTokenAPITestUsingDDT {
 
     private AuthService authService=new AuthService();
