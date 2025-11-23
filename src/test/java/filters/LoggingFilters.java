@@ -48,7 +48,7 @@ private Logger logger= LogManager.getLogger(LoggingFilters.class);
         ExtentManager.logHeaders(response.getHeaders());
         ExtentManager.logInfoDetails("response body: ");
         if(response.getBody()==null) {
-            ExtentManager.logInfoDetails("No Request body present");
+            ExtentManager.logInfoDetails("No Response body present");
         }
         else {
             ExtentManager.logJsonBody(response.getBody().prettyPrint());
