@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
 <suite name="All Test Suite">
+    <listeners>
+        <listener class-name="listener.TestListener" />
+    </listeners>
     <test verbose="2" preserve-order="true" name="D:/APIProject/RestfulBooker">
         <classes>
             <class name="APITest.BookingAPITest.CreateBookingAPITest">
@@ -20,6 +24,12 @@
                     <include name="getBookingIdsFilterByDate"/>
                 </methods>
             </class>
+            <class name="APITest.BookingAPITest.UpdateBookingAPITest">
+                <methods>
+                    <include name="updateBooking"/>
+                </methods>
+            </class>
+            <class name="APITest.BookingAPITest.DeleteBookingAPITest"></class>
             <class name="APITest.TokenAPITest.CreateTokenAPITest">
                 <methods>
                     <include name="createTokenAPITest"/>
