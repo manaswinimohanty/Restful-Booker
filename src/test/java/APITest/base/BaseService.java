@@ -29,20 +29,24 @@ public class BaseService {
 
     }
 
-public Response postRequest(Object payload, String basePath){
+public Response postRequest(Object payload, String endPoint){
 
-        return reqSpec.contentType(ContentType.JSON).body(payload).when().post(basePath);
+        return reqSpec.contentType(ContentType.JSON).body(payload).when().post(endPoint);
 }
 
-public Response getRequest(String basePath){
-        return reqSpec.when().get(basePath);
+public Response getRequest(String endPoint){
+        return reqSpec.when().get(endPoint);
 }
 
 
 
-public Response putRequest(Object payload,String basePath){
+public Response putRequest(Object payload,String endPoint){
         return reqSpec.contentType(ContentType.JSON)
-                .header("Authorization","Basic YWRtaW46cGFzc3dvcmQxMjM=").body(payload).when().put(basePath);
+                .header("Authorization","Basic YWRtaW46cGFzc3dvcmQxMjM=").body(payload).when().put(endPoint);
+}
+
+public Response deleteRequest(String endPoint){
+        return reqSpec.contentType(ContentType.JSON).header("Authorization","Basic YWRtaW46cGFzc3dvcmQxMjM=").when().delete(endPoint);
 }
 
 }

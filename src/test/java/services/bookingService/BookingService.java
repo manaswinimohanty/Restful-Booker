@@ -39,6 +39,11 @@ private static final String basePath="booking";
         return putRequest(payload,basePath+"/"+bookingId);
     }
 
+    public Response deleteBooking(String bookingId){
+        return deleteRequest(basePath+"/"+bookingId);
+
+    }
+
 
 
 }

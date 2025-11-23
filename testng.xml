@@ -29,6 +29,7 @@
                     <include name="updateBooking"/>
                 </methods>
             </class>
+            <class name="APITest.BookingAPITest.DeleteBookingAPITest"></class>
             <class name="APITest.TokenAPITest.CreateTokenAPITest">
                 <methods>
                     <include name="createTokenAPITest"/>
