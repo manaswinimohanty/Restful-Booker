@@ -6,6 +6,7 @@ import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import io.restassured.specification.FilterableRequestSpecification;
 import io.restassured.specification.FilterableResponseSpecification;
+import listener.TestListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import reports.ExtentManager;
@@ -22,8 +23,9 @@ private Logger logger= LogManager.getLogger(LoggingFilters.class);
         return response;
     }
     private void logRequest(FilterableRequestSpecification reqSpec){
-        System.out.println("============Filtering request==============");
-        System.out.println("Request Uri: "+reqSpec.getURI());
+        //System.out.println("============Filtering request==============");
+        ExtentManager.logInfoDetails("Request Type: "+reqSpec.getMethod());
+        //System.out.println("Request Uri: "+reqSpec.getURI());
         ExtentManager.logInfoDetails("Request Uri: "+reqSpec.getURI());
         ExtentManager.logInfoDetails("Headers are : ");
         Headers headers=reqSpec.getHeaders();
@@ -41,17 +43,29 @@ private Logger logger= LogManager.getLogger(LoggingFilters.class);
     }
     private void logResponse(Response response){
 
-        System.out.println("============Filtering request==============");
+        //System.out.println("============Filtering request==============");
         System.out.println("response status: " + response.getStatusCode());
         ExtentManager.logInfoDetails("response status: " + response.getStatusCode());
         ExtentManager.logInfoDetails("response headers: ");
         ExtentManager.logHeaders(response.getHeaders());
         ExtentManager.logInfoDetails("response body: ");
-        if(response.getBody()==null) {
+        String contentType = response.getContentType();
+        String body = response.getBody().prettyPrint();
+        if(body==null) {
             ExtentManager.logInfoDetails("No Response body present");
         }
         else {
-            ExtentManager.logJsonBody(response.getBody().prettyPrint());
+            if(contentType != null && contentType.contains("json")) {
+                ExtentManager.logJsonBody(response.getBody().prettyPrint());
+            } else if (contentType != null && contentType.contains("xml")) {
+
+                ExtentManager.logXmlBody(body);
+            }
+            else if(contentType.contains("text/plain")) {
+                TestListener.extentTestThreadLocal.get().info("<pre>" + body + "</pre>");
+            }
+            else
+                ExtentManager.logInfoDetails(body );
         }
 
         logger.info("response status: "+response.getStatusCode());

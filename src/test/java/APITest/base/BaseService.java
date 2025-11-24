@@ -4,6 +4,7 @@ import commonUtils.JsonUtils;
 import filters.LoggingFilters;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -24,8 +25,8 @@ public class BaseService {
     }
 
     public BaseService(){
-
-        reqSpec=RestAssured.given().baseUri(baseUri);
+        RestAssured.defaultParser = Parser.JSON;
+        reqSpec= RestAssured.given().baseUri(baseUri);
 
     }
 
