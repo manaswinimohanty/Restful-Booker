@@ -16,6 +16,7 @@ import services.bookingService.BookingService;
 
 import java.util.Map;
 
+import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
 
 //@Listeners(TestListener.class)
@@ -31,7 +32,7 @@ public class CreateBookingAPITest {
         CreateBookingPojo payload=BookingFactories.createBookingDefaultData();
        // CommonData.setUsers(payload);
         response=bookingService.createBooking(payload);
-        response.then().statusCode(200).body("any{it.key=='bookingid'}",is(true));
+        response.then().statusCode(200).body("$",hasKey("bookingid"));
         CommonData.setBookingId(response.path("bookingid"));
         //testContext.setAttribute("bookingid",response.path("bookingid"));
        // testContext.setAttribute("user",payload);

@@ -34,8 +34,8 @@ public class UpdateBookingAPITest {
         BookingService bookingService=new BookingService();
          createBookingPojo=BookingFactories.createBookingDefaultData();
         response=bookingService.createBooking(createBookingPojo);
-        bookingId=response.then().statusCode(200).body("any{it.key=='bookingid'}",is(true))
-                .assertThat().body("bookingid",is(not("")))
+        bookingId=response.then().statusCode(200).body("$",hasKey("bookingid"))
+                .assertThat().body("bookingid",notNullValue())
                 .extract().path("bookingid");
         return bookingId;
     }

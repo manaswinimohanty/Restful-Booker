@@ -8,8 +8,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import services.bookingService.BookingService;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.*;
 
 //@Listeners(TestListener.class)
 public class DeleteBookingAPITest {
@@ -27,11 +26,11 @@ private int bookingId;
 
 }
     private int getBookingId(){
-        BookingService bookingService=new BookingService();
+        //BookingService bookingService=new BookingService();
         CreateBookingPojo createBookingPojo= BookingFactories.createBookingDefaultData();
-        response=bookingService.createBooking(createBookingPojo);
-        bookingId=response.then().statusCode(200).body("any{it.key=='bookingid'}",is(true))
-                .assertThat().body("bookingid",is(not("")))
+        Response res=bookingService.createBooking(createBookingPojo);
+        bookingId=res.then().statusCode(200).body("$",hasKey("bookingid"))
+                .assertThat().body("bookingid",notNullValue())
                 .extract().path("bookingid");
         return bookingId;
     }

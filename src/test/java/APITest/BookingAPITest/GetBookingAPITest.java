@@ -16,8 +16,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.*;
 
 
 public class GetBookingAPITest {
@@ -33,8 +32,8 @@ public class GetBookingAPITest {
         BookingService bookingService=new BookingService();
         createBookingPojo=BookingFactories.createBookingDefaultData();
         response=bookingService.createBooking(createBookingPojo);
-        bookingId=response.then().statusCode(200).body("any{it.key=='bookingid'}",is(true))
-                .assertThat().body("bookingid",is(not("")))
+        bookingId=response.then().statusCode(200).body("$",hasKey("bookingid"))
+                .assertThat().body("bookingid",notNullValue())
                 .extract().path("bookingid");
         return bookingId;
     }
