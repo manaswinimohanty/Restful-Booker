@@ -24,9 +24,9 @@ public class CreateBookingAPITest {
 
     private Response response;
     private ObjectMapper objectMapper=new ObjectMapper();
-    private BookingService bookingService=new BookingService();
+    private final BookingService bookingService=new BookingService();
 
-    @Test(enabled = true)
+    @Test(enabled = true,alwaysRun = true)
     public void createBookingAPITest(ITestContext testContext){
 
         CreateBookingPojo payload=BookingFactories.createBookingDefaultData();

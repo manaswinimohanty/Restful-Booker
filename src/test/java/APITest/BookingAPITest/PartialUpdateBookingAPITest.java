@@ -6,39 +6,38 @@ import listener.TestListener;
 import models.requestModel.CreateBookingPojo;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import services.authService.AuthService;
 import services.bookingService.BookingService;
 
+import static factories.BookingFactories.faker;
 import static org.hamcrest.Matchers.*;
 
 //@Listeners(TestListener.class)
-public class UpdateBookingAPITest {
-    //private AuthService authService=new AuthService();
-    private Response response;
-    private final BookingService bookingService=new BookingService();
-    CreateBookingPojo createBookingPojo;
+public class PartialUpdateBookingAPITest {
+    private CreateBookingPojo createBookingPojo;
+    //private BookingService bookingService=new BookingService();
+    private final BookingService bookingService = new BookingService();
     private int bookingId;
 
 
 @Test(enabled = true,alwaysRun = true)
-    public void updateBookingTest(){
+public void partialUpdateBooking(){
     bookingId=getBookingId();
-    createBookingPojo=BookingFactories.createBookingDefaultData();
-    response=bookingService.updateBooking(createBookingPojo,String.valueOf(bookingId));
+    //createBookingPojo=createBookingPojo.toBuilder().firstname(faker.name().firstName()).lastname(faker.name().lastName()).build();
+    String body="{\n" +
+            "    \"firstname\" : \"James\",\n" +
+            "    \"lastname\" : \"Brown\"\n" +
+            "}";
+    Response response=bookingService.partialBookingUpdate(body,String.valueOf(bookingId));
     response.then().assertThat().statusCode(200);
-    //System.out.println(response.asString());
 
-
-    }
+}
     private int getBookingId(){
-        //BookingService bookingService=new BookingService();
-         createBookingPojo=BookingFactories.createBookingDefaultData();
+
+        createBookingPojo= BookingFactories.createBookingDefaultData();
         Response res=bookingService.createBooking(createBookingPojo);
         bookingId=res.then().statusCode(200).body("$",hasKey("bookingid"))
                 .assertThat().body("bookingid",notNullValue())
                 .extract().path("bookingid");
         return bookingId;
     }
-
-
 }

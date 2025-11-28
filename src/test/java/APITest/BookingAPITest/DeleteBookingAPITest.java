@@ -12,13 +12,13 @@ import static org.hamcrest.Matchers.*;
 
 //@Listeners(TestListener.class)
 public class DeleteBookingAPITest {
-BookingService bookingService=new BookingService();
+private final BookingService bookingService=new BookingService();
 private Response response;
 private int bookingId;
 
 
 @Test(enabled = true)
-    public void deleteBooking(){
+    public void deleteBookingTest(){
     //bookingId =getBookingId();
     response=bookingService.deleteBooking(String.valueOf(getBookingId()));
     response.then().statusCode(201);

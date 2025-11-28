@@ -20,7 +20,7 @@ public class GetBookingIdsAPITest {
     private BookingService bookingService=new BookingService();
     Response response;
 
-    @Test(enabled = true, description="get all booking Ids")
+    @Test(enabled = true,alwaysRun = true, description="get all booking Ids")
     public void getAllIds(){
         response=bookingService.getBookingIds();
         response.then().statusCode(200);

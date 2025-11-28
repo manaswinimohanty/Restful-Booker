@@ -7,39 +7,20 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="D:/APIProject/RestfulBooker">
         <classes>
-            <class name="APITest.BookingAPITest.CreateBookingAPITest">
-                <methods>
-                    <include name="createBookingAPITest"/>
-                </methods>
-            </class>
-            <class name="APITest.BookingAPITest.GetBookingAPITest">
-                <methods>
-                    <include name="getBookingAPITest"/>
-                </methods>
-            </class>
-            <class name="APITest.BookingAPITest.GetBookingIdsAPITest">
-                <methods>
-                    <include name="getAllIds"/>
-                    <include name="getBookingIdsFilterByName"/>
-                    <include name="getBookingIdsFilterByDate"/>
-                </methods>
-            </class>
-            <class name="APITest.BookingAPITest.UpdateBookingAPITest">
-                <methods>
-                    <include name="updateBooking"/>
-                </methods>
-            </class>
-            <class name="APITest.BookingAPITest.DeleteBookingAPITest"></class>
-            <class name="APITest.TokenAPITest.CreateTokenAPITest">
-                <methods>
-                    <include name="createTokenAPITest"/>
-                </methods>
-            </class>
-            <class name="APITest.TokenAPITest.CreateTokenAPITestUsingDDT">
-                <methods>
-                    <include name="createTokenAPITestUsingDDT"/>
-                </methods>
-            </class>
+            <class name="APITest.BookingAPITest.CreateBookingAPITest"/>
+            <class name="APITest.BookingAPITest.GetBookingAPITest"/>
+
+            <class name="APITest.BookingAPITest.GetBookingIdsAPITest"/>
+
+            <class name="APITest.BookingAPITest.UpdateBookingAPITest"/>
+
+            <class name="APITest.BookingAPITest.DeleteBookingAPITest"/>
+            <class name="APITest.BookingAPITest.PartialUpdateBookingAPITest"/>
+            <class name="APITest.TokenAPITest.CreateTokenAPITest"/>
+
+            <class name="APITest.TokenAPITest.CreateTokenAPITestUsingDDT"/>
+
+
         </classes>
     </test>
 </suite>
