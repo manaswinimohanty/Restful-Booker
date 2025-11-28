@@ -18,13 +18,14 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 
-
+//@Listeners(TestListener.class)
 public class GetBookingAPITest {
     //private BookingService bookingService;
     private Response response;
     ObjectMapper mapper;
-    private static int bookingId;
-    CreateBookingPojo createBookingPojo;
+    private int bookingId;
+    private CreateBookingPojo createBookingPojo;
+    private final BookingService bookingService=new BookingService();
 
 
 
@@ -39,9 +40,9 @@ public class GetBookingAPITest {
     }
 
 
-    @Test
-    private void getBookingAPITest(){
-        BookingService bookingService=new BookingService();
+@Test(enabled = true,alwaysRun = true)
+    public void getBookingTest(){
+         //BookingService bookingService=new BookingService();
         bookingId=createBooking();
 
         System.out.println("================"+bookingId);
@@ -50,7 +51,7 @@ public class GetBookingAPITest {
         mapper=new ObjectMapper();
         try {
             CreateBookingPojo recvBookingPojo=mapper.readValue(response.asString(), new TypeReference<CreateBookingPojo>() {});
-            assertNverifyToken(createBookingPojo,recvBookingPojo);
+            assertNverify(createBookingPojo,recvBookingPojo);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -58,13 +59,13 @@ public class GetBookingAPITest {
     }
 
 
-    public void assertNverifyToken(CreateBookingPojo sentData,Object recvData){
+    private void assertNverify(CreateBookingPojo sentData,Object recvData){
         if(sentData instanceof CreateBookingPojo && recvData instanceof CreateBookingPojo){
             List<AssertionKeys> assertionKeysList=new ArrayList<>();
             AssertionKeys assertionKeys=new AssertionKeys("JsonPath", "Expected_Value", "Actual_Value", "Result");
             assertionKeysList.add(assertionKeys);
-            Class<?> CreateBookingPojoClass=sentData.getClass();
-            Field[] fields=CreateBookingPojoClass.getDeclaredFields();
+            //Class<?> CreateBookingPojoClass=sentData.getClass();
+            //Field[] fields=CreateBookingPojoClass.getDeclaredFields();
 
             /*for(Field field:fields){
                 field.setAccessible(true);

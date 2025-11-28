@@ -12,10 +12,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class BookingFactories {
-    private static Faker faker;
+    public static Faker faker;
 
    static  {
-       System.out.println("inside BookingFactories static block");
+       //System.out.println("inside BookingFactories static block");
       faker=new Faker();
     }
 

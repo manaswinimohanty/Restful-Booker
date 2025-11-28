@@ -44,6 +44,10 @@ private static final String basePath="booking";
 
     }
 
+    public Response partialBookingUpdate(Object payload,String bookingId){
+        return patchRequest(payload,basePath+"/"+bookingId);
+    }
+
 
 
 }
